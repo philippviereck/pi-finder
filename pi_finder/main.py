@@ -65,7 +65,6 @@ def run():
 
         for host in host_list:
             if 'mac' in nm[host]['addresses']:
-                # print(host+' : '+nm[host]['addresses']['mac'])
                 for target_prefix in target_prefixes:
                     if target_prefix in nm[host]['addresses']['mac']:
                         found.update({host: nm[host]['addresses']['mac']})
