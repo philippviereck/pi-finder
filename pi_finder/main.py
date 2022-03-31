@@ -3,6 +3,13 @@ from time import sleep
 from yaspin import yaspin
 import nmap
 import os
+import argparse
+
+parser = argparse.ArgumentParser(description="search for pi's in your LAN")
+parser.add_argument('-c', action='store_true',
+                    help='continuous scanning')
+
+args = parser.parse_args()
 
 logo = """
 
@@ -77,4 +84,8 @@ def run():
             for host, mac in found.items():
                 print(
                     f"📍 {host} is a raspberry pi [{mac}] | ssh://pi@{host} or 'ssh pi@{host}'")
-            break
+            if not args.c:
+                break
+            else:
+                print("Sleeping...")
+                sleep(8)
